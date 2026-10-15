@@ -1,0 +1,151 @@
+id,fecha,empleado,area,ciudad,categoria,descripcion,valor_cop,estado
+G-001,2026-07-08,Daniela Osorio,Ventas,Cartagena,Alimentación,"Desayuno, almuerzo y cena",53000,Aprobado
+G-002,2026-07-08,Daniela Osorio,Ventas,Cartagena,Hospedaje,Noche de hotel en Cartagena,231000,Aprobado
+G-003,2026-07-08,Daniela Osorio,Ventas,Cartagena,Tiquetes aéreos,Tiquete ida y vuelta a Cartagena (compra de último momento),1640000,Pendiente
+G-004,2026-07-08,Daniela Osorio,Ventas,Cartagena,Transporte terrestre,Traslados urbanos,29500,Aprobado
+G-005,2026-07-09,Daniela Osorio,Ventas,Cartagena,Alimentación,Almuerzo y cena,63500,Aprobado
+G-006,2026-07-13,Marcela Pineda,Operaciones,Barranquilla,Alimentación,"Desayuno, almuerzo y cena",99000,Pendiente
+G-007,2026-07-13,Marcela Pineda,Operaciones,Barranquilla,Hospedaje,Noche de hotel en Barranquilla,205500,Rechazado
+G-008,2026-07-13,Marcela Pineda,Operaciones,Barranquilla,Otros,Parqueadero,40500,Aprobado
+G-009,2026-07-13,Marcela Pineda,Operaciones,Barranquilla,Tiquetes aéreos,Tiquete ida y vuelta a Barranquilla,778000,Rechazado
+G-010,2026-07-13,Ricardo Nieto,Gestión Humana,Bogotá,Alimentación,Alimentación del día,66000,Aprobado
+G-011,2026-07-13,Ricardo Nieto,Gestión Humana,Bogotá,Hospedaje,Noche de hotel en Bogotá,213000,Aprobado
+G-012,2026-07-13,Ricardo Nieto,Gestión Humana,Bogotá,Tiquetes aéreos,Tiquete ida y vuelta a Bogotá,368500,Rechazado
+G-013,2026-07-13,Ricardo Nieto,Gestión Humana,Bogotá,Transporte terrestre,Taxi aeropuerto y traslados,54000,Aprobado
+G-014,2026-07-14,Marcela Pineda,Operaciones,Barranquilla,Alimentación,"Desayuno, almuerzo y cena",80000,Aprobado
+G-015,2026-07-14,Marcela Pineda,Operaciones,Barranquilla,Transporte terrestre,Transporte por aplicación,32000,Aprobado
+G-016,2026-07-14,Ricardo Nieto,Gestión Humana,Bogotá,Alimentación,Almuerzo con cliente y cena,74500,Aprobado
+G-017,2026-07-14,Ricardo Nieto,Gestión Humana,Bogotá,Hospedaje,Noche de hotel en Bogotá,279000,Aprobado
+G-018,2026-07-15,Ricardo Nieto,Gestión Humana,Bogotá,Alimentación,Almuerzo y cena,95000,Aprobado
+G-019,2026-07-20,Juliana Peña,Mercadeo,Medellín,Alimentación,Almuerzo con cliente y cena,53000,Aprobado
+G-020,2026-07-20,Juliana Peña,Mercadeo,Medellín,Hospedaje,Noche de hotel en Medellín,258000,Aprobado
+G-021,2026-07-20,Juliana Peña,Mercadeo,Medellín,Tiquetes aéreos,Tiquete ida y vuelta a Medellín,688500,Aprobado
+G-022,2026-07-20,Juliana Peña,Mercadeo,Medellín,Transporte terrestre,Taxis a reuniones,24000,Pendiente
+G-023,2026-07-21,Juliana Peña,Mercadeo,Medellín,Alimentación,Alimentación del día,50500,Pendiente
+G-024,2026-07-21,Juliana Peña,Mercadeo,Medellín,Hospedaje,Noche de hotel en Medellín,316500,Aprobado
+G-025,2026-07-21,Juliana Peña,Mercadeo,Medellín,Transporte terrestre,Taxis a reuniones,18000,Aprobado
+G-026,2026-07-22,Juliana Peña,Mercadeo,Medellín,Alimentación,Almuerzo con cliente y cena,40500,Aprobado
+G-027,2026-07-22,Juliana Peña,Mercadeo,Medellín,Hospedaje,Noche de hotel en Medellín,245000,Aprobado
+G-028,2026-07-22,Juliana Peña,Mercadeo,Medellín,Transporte terrestre,Taxis a reuniones,39000,Pendiente
+G-029,2026-07-22,Paola Rincón,Ventas,Cali,Alimentación,"Desayuno, almuerzo y cena",82000,Rechazado
+G-030,2026-07-22,Paola Rincón,Ventas,Cali,Hospedaje,Noche de hotel en Cali,172000,Aprobado
+G-031,2026-07-22,Paola Rincón,Ventas,Cali,Tiquetes aéreos,Tiquete ida y vuelta a Cali,408500,Aprobado
+G-032,2026-07-22,Paola Rincón,Ventas,Cali,Transporte terrestre,Taxis a reuniones,42000,Aprobado
+G-033,2026-07-23,Juliana Peña,Mercadeo,Medellín,Alimentación,Almuerzo con cliente y cena,49500,Aprobado
+G-034,2026-07-23,Juliana Peña,Mercadeo,Medellín,Transporte terrestre,Taxi aeropuerto y traslados,51500,Rechazado
+G-035,2026-07-23,Paola Rincón,Ventas,Cali,Alimentación,Almuerzo y cena,52500,Aprobado
+G-036,2026-07-23,Paola Rincón,Ventas,Cali,Hospedaje,Noche de hotel en Cali,150500,Aprobado
+G-037,2026-07-24,Paola Rincón,Ventas,Cali,Alimentación,Almuerzo con cliente y cena,132500,Rechazado
+G-038,2026-07-24,Paola Rincón,Ventas,Cali,Transporte terrestre,Taxis a reuniones,46000,Aprobado
+G-039,2026-07-29,Daniela Osorio,Ventas,Cartagena,Alimentación,Alimentación del día,46000,Pendiente
+G-040,2026-07-29,Daniela Osorio,Ventas,Cartagena,Hospedaje,Noche de hotel en Cartagena,235500,Aprobado
+G-041,2026-07-29,Daniela Osorio,Ventas,Cartagena,Transporte terrestre,Taxis a reuniones,14500,Aprobado
+G-042,2026-07-30,Daniela Osorio,Ventas,Cartagena,Alimentación,Alimentación del día,77000,Aprobado
+G-043,2026-07-30,Daniela Osorio,Ventas,Cartagena,Hospedaje,Noche de hotel en Cartagena,242000,Aprobado
+G-044,2026-07-31,Daniela Osorio,Ventas,Cartagena,Alimentación,Almuerzo con cliente y cena,69500,Aprobado
+G-045,2026-07-31,Daniela Osorio,Ventas,Cartagena,Transporte terrestre,Taxis a reuniones,59500,Aprobado
+G-046,2026-08-10,Andrés Quintero,Ventas,Bucaramanga,Alimentación,Alimentación del día,55000,Pendiente
+G-047,2026-08-10,Andrés Quintero,Ventas,Bucaramanga,Hospedaje,Noche de hotel en Bucaramanga,224000,Aprobado
+G-048,2026-08-10,Andrés Quintero,Ventas,Bucaramanga,Tiquetes aéreos,Tiquete ida y vuelta a Bucaramanga,437000,Aprobado
+G-049,2026-08-10,Andrés Quintero,Ventas,Bucaramanga,Transporte terrestre,Taxis a reuniones,23000,Aprobado
+G-050,2026-08-10,Felipe Arango,Ventas,Bucaramanga,Alimentación,"Desayuno, almuerzo y cena",65000,Rechazado
+G-051,2026-08-10,Felipe Arango,Ventas,Bucaramanga,Hospedaje,Noche de hotel en Bucaramanga,213500,Aprobado
+G-052,2026-08-10,Felipe Arango,Ventas,Bucaramanga,Otros,Minibar del hotel,64000,Rechazado
+G-053,2026-08-10,Felipe Arango,Ventas,Bucaramanga,Tiquetes aéreos,Tiquete ida y vuelta a Bucaramanga,657500,Rechazado
+G-054,2026-08-11,Andrés Quintero,Ventas,Bucaramanga,Alimentación,Almuerzo y cena,59500,Aprobado
+G-055,2026-08-11,Andrés Quintero,Ventas,Bucaramanga,Hospedaje,Noche de hotel en Bucaramanga,189500,Pendiente
+G-056,2026-08-11,Andrés Quintero,Ventas,Bucaramanga,Transporte terrestre,Taxis a reuniones,38000,Aprobado
+G-057,2026-08-11,Felipe Arango,Ventas,Bucaramanga,Alimentación,Almuerzo y cena,73000,Pendiente
+G-058,2026-08-11,Felipe Arango,Ventas,Bucaramanga,Hospedaje,Noche de hotel en Bucaramanga,153500,Aprobado
+G-059,2026-08-11,Felipe Arango,Ventas,Bucaramanga,Transporte terrestre,Taxi aeropuerto y traslados,58500,Aprobado
+G-060,2026-08-12,Andrés Quintero,Ventas,Bucaramanga,Alimentación,Almuerzo con cliente y cena,73000,Aprobado
+G-061,2026-08-12,Andrés Quintero,Ventas,Bucaramanga,Hospedaje,Noche de hotel en Bucaramanga,200000,Aprobado
+G-062,2026-08-12,Andrés Quintero,Ventas,Bucaramanga,Transporte terrestre,Taxi aeropuerto y traslados,27500,Aprobado
+G-063,2026-08-12,Felipe Arango,Ventas,Bucaramanga,Alimentación,Almuerzo con cliente y cena,60000,Aprobado
+G-064,2026-08-12,Felipe Arango,Ventas,Bucaramanga,Transporte terrestre,Taxi aeropuerto y traslados,40500,Rechazado
+G-065,2026-08-13,Andrés Quintero,Ventas,Bucaramanga,Alimentación,Almuerzo y cena,41000,Aprobado
+G-066,2026-08-13,Andrés Quintero,Ventas,Bucaramanga,Transporte terrestre,Taxi aeropuerto y traslados,41000,Aprobado
+G-067,2026-08-13,Juliana Peña,Mercadeo,Bogotá,Alimentación,Almuerzo con cliente y cena,53500,Rechazado
+G-068,2026-08-13,Juliana Peña,Mercadeo,Bogotá,Hospedaje,Noche de hotel en Bogotá,317000,Aprobado
+G-069,2026-08-13,Juliana Peña,Mercadeo,Bogotá,Tiquetes aéreos,Tiquete ida y vuelta a Bogotá,637500,Aprobado
+G-070,2026-08-13,Juliana Peña,Mercadeo,Bogotá,Transporte terrestre,Taxis a reuniones,48500,Aprobado
+G-071,2026-08-14,Juliana Peña,Mercadeo,Bogotá,Alimentación,"Desayuno, almuerzo y cena",59500,Aprobado
+G-072,2026-08-14,Juliana Peña,Mercadeo,Bogotá,Transporte terrestre,Taxis a reuniones,38000,Pendiente
+G-073,2026-08-18,Natalia Guzmán,Tecnología,Medellín,Alimentación,Alimentación del día,88000,Aprobado
+G-074,2026-08-18,Natalia Guzmán,Tecnología,Medellín,Hospedaje,Noche de hotel en Medellín,289000,Aprobado
+G-075,2026-08-18,Natalia Guzmán,Tecnología,Medellín,Otros,Peajes,66500,Aprobado
+G-076,2026-08-18,Natalia Guzmán,Tecnología,Medellín,Tiquetes aéreos,Tiquete ida y vuelta a Medellín,806500,Aprobado
+G-077,2026-08-19,Natalia Guzmán,Tecnología,Medellín,Alimentación,Alimentación del día,75500,Aprobado
+G-078,2026-08-31,Jorge Cárdenas,Operaciones,Cartagena,Alimentación,Alimentación del día,87500,Aprobado
+G-079,2026-08-31,Jorge Cárdenas,Operaciones,Cartagena,Hospedaje,Noche de hotel en Cartagena,385000,Rechazado
+G-080,2026-08-31,Jorge Cárdenas,Operaciones,Cartagena,Tiquetes aéreos,Tiquete ida y vuelta a Cartagena,728000,Pendiente
+G-081,2026-08-31,Jorge Cárdenas,Operaciones,Cartagena,Transporte terrestre,Transporte por aplicación,57000,Aprobado
+G-082,2026-08-31,Natalia Guzmán,Tecnología,Bogotá,Alimentación,Alimentación del día,70500,Aprobado
+G-083,2026-08-31,Natalia Guzmán,Tecnología,Bogotá,Hospedaje,Noche de hotel en Bogotá,281500,Aprobado
+G-084,2026-08-31,Natalia Guzmán,Tecnología,Bogotá,Otros,Parqueadero,33500,Aprobado
+G-085,2026-08-31,Natalia Guzmán,Tecnología,Bogotá,Transporte terrestre,Taxi aeropuerto y traslados,42500,Aprobado
+G-086,2026-09-01,Jorge Cárdenas,Operaciones,Cartagena,Alimentación,"Desayuno, almuerzo y cena",44000,Aprobado
+G-087,2026-09-01,Jorge Cárdenas,Operaciones,Cartagena,Transporte terrestre,Taxi aeropuerto y traslados,47500,Pendiente
+G-088,2026-09-01,Natalia Guzmán,Tecnología,Bogotá,Alimentación,Almuerzo y cena,104000,Aprobado
+G-089,2026-09-01,Natalia Guzmán,Tecnología,Bogotá,Hospedaje,Noche de hotel en Bogotá,314500,Rechazado
+G-090,2026-09-01,Natalia Guzmán,Tecnología,Bogotá,Transporte terrestre,Traslados urbanos,24000,Aprobado
+G-091,2026-09-02,Natalia Guzmán,Tecnología,Bogotá,Alimentación,Alimentación del día,75500,Aprobado
+G-092,2026-09-02,Natalia Guzmán,Tecnología,Bogotá,Transporte terrestre,Transporte por aplicación,23000,Aprobado
+G-093,2026-09-03,Sandra Beltrán,Operaciones,Bogotá,Alimentación,Alimentación del día,83000,Aprobado
+G-094,2026-09-03,Sandra Beltrán,Operaciones,Bogotá,Hospedaje,Noche de hotel en Bogotá,195500,Aprobado
+G-095,2026-09-04,Sandra Beltrán,Operaciones,Bogotá,Alimentación,Almuerzo y cena,118000,Aprobado
+G-096,2026-09-04,Sandra Beltrán,Operaciones,Bogotá,Hospedaje,Noche de hotel en Bogotá,277500,Aprobado
+G-097,2026-09-04,Sandra Beltrán,Operaciones,Bogotá,Transporte terrestre,Traslados urbanos,57000,Aprobado
+G-098,2026-09-05,Sandra Beltrán,Operaciones,Bogotá,Alimentación,Almuerzo con cliente y cena,49000,Aprobado
+G-099,2026-09-05,Sandra Beltrán,Operaciones,Bogotá,Transporte terrestre,Transporte por aplicación,33500,Aprobado
+G-100,2026-09-08,Óscar Villamil,Operaciones,Pereira,Alimentación,Alimentación del día,56000,Aprobado
+G-101,2026-09-08,Óscar Villamil,Operaciones,Pereira,Hospedaje,Noche de hotel en Pereira,176500,Aprobado
+G-102,2026-09-08,Óscar Villamil,Operaciones,Pereira,Tiquetes aéreos,Tiquete ida y vuelta a Pereira,565000,Aprobado
+G-103,2026-09-08,Óscar Villamil,Operaciones,Pereira,Transporte terrestre,Taxis a reuniones,56000,Aprobado
+G-104,2026-09-09,Jorge Cárdenas,Operaciones,Cali,Alimentación,Alimentación del día,51000,Aprobado
+G-105,2026-09-09,Jorge Cárdenas,Operaciones,Cali,Hospedaje,Noche de hotel en Cali,229500,Aprobado
+G-106,2026-09-09,Jorge Cárdenas,Operaciones,Cali,Tiquetes aéreos,Tiquete ida y vuelta a Cali,787000,Aprobado
+G-107,2026-09-09,Jorge Cárdenas,Operaciones,Cali,Transporte terrestre,Traslados urbanos,37000,Aprobado
+G-108,2026-09-09,Óscar Villamil,Operaciones,Pereira,Alimentación,"Desayuno, almuerzo y cena",80000,Aprobado
+G-109,2026-09-09,Óscar Villamil,Operaciones,Pereira,Transporte terrestre,Transporte por aplicación,39500,Aprobado
+G-110,2026-09-10,Felipe Arango,Ventas,Bogotá,Alimentación,"Desayuno, almuerzo y cena",94000,Aprobado
+G-111,2026-09-10,Felipe Arango,Ventas,Bogotá,Hospedaje,Noche de hotel en Bogotá,293000,Rechazado
+G-112,2026-09-10,Felipe Arango,Ventas,Bogotá,Tiquetes aéreos,Tiquete ida y vuelta a Bogotá,407500,Aprobado
+G-113,2026-09-10,Jorge Cárdenas,Operaciones,Cali,Alimentación,Almuerzo con cliente y cena,61500,Aprobado
+G-114,2026-09-10,Jorge Cárdenas,Operaciones,Cali,Transporte terrestre,Traslados urbanos,46500,Aprobado
+G-115,2026-09-11,Felipe Arango,Ventas,Bogotá,Alimentación,"Desayuno, almuerzo y cena",72000,Aprobado
+G-116,2026-09-11,Felipe Arango,Ventas,Bogotá,Transporte terrestre,Taxi aeropuerto y traslados,26000,Aprobado
+G-117,2026-09-14,Ricardo Nieto,Gestión Humana,Pereira,Alimentación,Almuerzo y cena,79500,Aprobado
+G-118,2026-09-14,Ricardo Nieto,Gestión Humana,Pereira,Hospedaje,Noche de hotel en Pereira,215500,Aprobado
+G-119,2026-09-14,Ricardo Nieto,Gestión Humana,Pereira,Tiquetes aéreos,Tiquete ida y vuelta a Pereira,661000,Aprobado
+G-120,2026-09-14,Ricardo Nieto,Gestión Humana,Pereira,Transporte terrestre,Transporte por aplicación,40500,Aprobado
+G-121,2026-09-15,Ricardo Nieto,Gestión Humana,Pereira,Alimentación,"Desayuno, almuerzo y cena",47000,Pendiente
+G-122,2026-09-15,Ricardo Nieto,Gestión Humana,Pereira,Transporte terrestre,Traslados urbanos,44000,Aprobado
+G-123,2026-09-15,Óscar Villamil,Operaciones,Cartagena,Alimentación,Alimentación del día,62000,Aprobado
+G-124,2026-09-15,Óscar Villamil,Operaciones,Cartagena,Hospedaje,Noche de hotel en Cartagena,299500,Rechazado
+G-125,2026-09-15,Óscar Villamil,Operaciones,Cartagena,Tiquetes aéreos,Tiquete ida y vuelta a Cartagena,489000,Aprobado
+G-126,2026-09-16,Iván Salcedo,Tecnología,Barranquilla,Alimentación,Almuerzo con cliente y cena,83000,Aprobado
+G-127,2026-09-16,Iván Salcedo,Tecnología,Barranquilla,Hospedaje,Noche de hotel en Barranquilla,165500,Rechazado
+G-128,2026-09-16,Iván Salcedo,Tecnología,Barranquilla,Tiquetes aéreos,Tiquete ida y vuelta a Barranquilla,545500,Aprobado
+G-129,2026-09-16,Óscar Villamil,Operaciones,Cartagena,Alimentación,Alimentación del día,72500,Aprobado
+G-130,2026-09-16,Óscar Villamil,Operaciones,Cartagena,Hospedaje,Noche de hotel en Cartagena,244000,Aprobado
+G-131,2026-09-16,Óscar Villamil,Operaciones,Cartagena,Transporte terrestre,Taxis a reuniones,56500,Rechazado
+G-132,2026-09-17,Iván Salcedo,Tecnología,Barranquilla,Alimentación,Almuerzo y cena,89500,Aprobado
+G-133,2026-09-17,Iván Salcedo,Tecnología,Barranquilla,Transporte terrestre,Taxis a reuniones,55500,Pendiente
+G-134,2026-09-17,Paola Rincón,Ventas,Bucaramanga,Alimentación,Almuerzo con cliente y cena,40000,Aprobado
+G-135,2026-09-17,Paola Rincón,Ventas,Bucaramanga,Hospedaje,Noche de hotel en Bucaramanga,162000,Aprobado
+G-136,2026-09-17,Paola Rincón,Ventas,Bucaramanga,Otros,Multa de tránsito,234000,Aprobado
+G-137,2026-09-17,Paola Rincón,Ventas,Bucaramanga,Tiquetes aéreos,Tiquete ida y vuelta a Bucaramanga,850000,Aprobado
+G-138,2026-09-17,Paola Rincón,Ventas,Bucaramanga,Transporte terrestre,Transporte por aplicación,29500,Aprobado
+G-139,2026-09-17,Óscar Villamil,Operaciones,Cartagena,Alimentación,Alimentación del día,91000,Aprobado
+G-140,2026-09-17,Óscar Villamil,Operaciones,Cartagena,Transporte terrestre,Taxi aeropuerto y traslados,54500,Aprobado
+G-141,2026-09-18,Paola Rincón,Ventas,Bucaramanga,Alimentación,"Desayuno, almuerzo y cena",87000,Aprobado
+G-142,2026-09-18,Paola Rincón,Ventas,Bucaramanga,Hospedaje,Noche de hotel en Bucaramanga,157500,Aprobado
+G-143,2026-09-18,Paola Rincón,Ventas,Bucaramanga,Transporte terrestre,Taxi aeropuerto y traslados,28000,Pendiente
+G-144,2026-09-19,Paola Rincón,Ventas,Bucaramanga,Alimentación,Alimentación del día,89500,Aprobado
+G-145,2026-09-24,Carolina Bernal,Gestión Humana,Barranquilla,Alimentación,Almuerzo y cena,69000,Aprobado
+G-146,2026-09-24,Carolina Bernal,Gestión Humana,Barranquilla,Hospedaje,Noche de hotel en Barranquilla,290000,Aprobado
+G-147,2026-09-24,Carolina Bernal,Gestión Humana,Barranquilla,Tiquetes aéreos,Tiquete ida y vuelta a Barranquilla,410500,Aprobado
+G-148,2026-09-25,Carolina Bernal,Gestión Humana,Barranquilla,Alimentación,Almuerzo con cliente y cena,43000,Aprobado
+G-149,2026-09-25,Carolina Bernal,Gestión Humana,Barranquilla,Transporte terrestre,Transporte por aplicación,24000,Aprobado
+G-150,2026-08-10,Andrés Quintero,Ventas,Bucaramanga,Hospedaje,Noche de hotel en Bucaramanga,224000,Aprobado
