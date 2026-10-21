@@ -1,0 +1,6 @@
+legalizacion,empleado,ciudad,salida,regreso,id,fecha,categoria,descripcion,factura,valor_cop
+L-9001,Camila Ortiz,Barranquilla,2026-10-13,2026-10-15,G-901,2026-10-13,Tiquetes aéreos,Tiquete ida y vuelta a Barranquilla,FE-10234,486000
+L-9001,Camila Ortiz,Barranquilla,2026-10-13,2026-10-15,G-902,2026-10-13,Hospedaje,Noche de hotel en Barranquilla,FE-62015,245000
+L-9001,Camila Ortiz,Barranquilla,2026-10-13,2026-10-15,G-903,2026-10-14,Alimentación,Almuerzo y cena,FE-37741,68000
+L-9001,Camila Ortiz,Barranquilla,2026-10-13,2026-10-15,G-904,2026-10-14,Transporte terrestre,Taxi aeropuerto y traslados,FE-90562,41000
+L-9001,Camila Ortiz,Barranquilla,2026-10-13,2026-10-15,G-905,2026-10-15,Alimentación,Desayuno y almuerzo,FE-37802,45500

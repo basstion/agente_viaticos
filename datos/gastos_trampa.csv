@@ -1,0 +1,21 @@
+legalizacion,empleado,ciudad,salida,regreso,id,fecha,categoria,descripcion,factura,valor_cop
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-301,2026-10-05,Tiquetes aéreos,Tiquete ida y vuelta a Medellín,FE-88977,548000
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-302,2026-10-05,Hospedaje,Noche de hotel en Medellín,FE-70211,298000
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-303,2026-10-05,Alimentación,Almuerzo y cena,FE-41120,64000
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-304,2026-10-05,Transporte terrestre,Taxi aeropuerto y traslados,FE-93310,52000
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-305,2026-10-06,Hospedaje,Noche de hotel en Medellín,FE-70233,298000
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-306,2026-10-06,Alimentación,"Desayuno, almuerzo y cena",FE-41187,95001
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-307,2026-10-06,Transporte terrestre,Transporte por aplicación,,58000
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-308,2026-10-07,Hospedaje,Noche de hotel en Medellín,FE-70258,298000
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-309,2026-10-07,Alimentación,"Desayuno, almuerzo y cena",FE-41240,95000
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-310,2026-10-07,Transporte terrestre,Taxis a reuniones,FE-93402,44000
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-311,2026-10-07,Otros,Licencia mensual de herramienta de videollamadas,INV-0093,USD 25.00
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-312,2026-10-08,Hospedaje,Noche de hotel en Medellín,FE-70291,298000
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-313,2026-10-08,Alimentación,Almuerzo con cliente y cena,FE-41302,77500
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-314,2026-10-08,Transporte terrestre,Traslados urbanos,FE-93455,39000
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-315,2026-10-08,Otros,Parqueadero,,14000
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-316,2026-10-09,Alimentación,Desayuno y almuerzo,FE-41377,52000
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-317,2026-10-09,Transporte terrestre,Taxi al aeropuerto,FE-93521,57000
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-318,2026-10-10,Alimentación,Almuerzo,FE-41420,68000
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-319,2026-09-08,Transporte terrestre,Taxis a reuniones,FE-91804,46000
+L-2044,Natalia Guzmán,Medellín,2026-10-05,2026-10-09,G-320,2026-10-07,Hospedaje,"Hotel en Medellín, noche del 7 de octubre",FE-70258,298000

@@ -1,0 +1,15 @@
+legalizacion,empleado,ciudad,salida,regreso,id,fecha,categoria,descripcion,factura,valor_cop
+L-2031,Andrés Quintero,Bucaramanga,2026-09-28,2026-10-01,G-201,2026-09-28,Tiquetes aéreos,Tiquete ida y vuelta a Bucaramanga,FE-88410,612000
+L-2031,Andrés Quintero,Bucaramanga,2026-09-28,2026-10-01,G-202,2026-09-28,Hospedaje,Noche de hotel en Bucaramanga,FE-51902,228000
+L-2031,Andrés Quintero,Bucaramanga,2026-09-28,2026-10-01,G-203,2026-09-28,Alimentación,Almuerzo y cena,FE-33871,72500
+L-2031,Andrés Quintero,Bucaramanga,2026-09-28,2026-10-01,G-204,2026-09-28,Transporte terrestre,Taxi aeropuerto y traslados,FE-90117,38000
+L-2031,Andrés Quintero,Bucaramanga,2026-09-28,2026-10-01,G-205,2026-09-29,Hospedaje,Noche de hotel en Bucaramanga,FE-51925,228000
+L-2031,Andrés Quintero,Bucaramanga,2026-09-28,2026-10-01,G-206,2026-09-29,Alimentación,"Desayuno, almuerzo y cena",FE-33902,95000
+L-2031,Andrés Quintero,Bucaramanga,2026-09-28,2026-10-01,G-207,2026-09-29,Transporte terrestre,Traslados urbanos,,22500
+L-2031,Andrés Quintero,Bucaramanga,2026-09-28,2026-10-01,G-208,2026-09-29,Otros,Minibar del hotel,FE-51926,36000
+L-2031,Andrés Quintero,Bucaramanga,2026-09-28,2026-10-01,G-209,2026-09-30,Hospedaje,Noche de hotel en Bucaramanga (tarifa de feria),FE-51951,262000
+L-2031,Andrés Quintero,Bucaramanga,2026-09-28,2026-10-01,G-210,2026-09-30,Alimentación,Almuerzo con cliente y cena,FE-34015,88000
+L-2031,Andrés Quintero,Bucaramanga,2026-09-28,2026-10-01,G-211,2026-09-30,Transporte terrestre,Taxis a reuniones,FE-90288,47000
+L-2031,Andrés Quintero,Bucaramanga,2026-09-28,2026-10-01,G-212,2026-09-30,Otros,Papelería para el taller con el cliente,,27800
+L-2031,Andrés Quintero,Bucaramanga,2026-09-28,2026-10-01,G-213,2026-10-01,Alimentación,Desayuno y almuerzo,FE-34102,41000
+L-2031,Andrés Quintero,Bucaramanga,2026-09-28,2026-10-01,G-214,2026-10-01,Transporte terrestre,Taxi al aeropuerto,FE-90341,55000
