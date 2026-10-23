@@ -1,0 +1,41 @@
+radicado,fecha_radicado,id_empleado,ciudad,fecha_salida,noches,motivo,valor_noche,valor_tiquete,estado
+S-101,2026-07-28,E-02,Bucaramanga,2026-08-03,2,Visita a cliente,225000,410000,Aprobada
+S-102,2026-07-29,E-05,Medellín,2026-08-05,1,Auditoría de bodega,290000,520000,Aprobada
+S-103,2026-07-30,E-09,Bogotá,2026-08-06,3,Capacitación técnica,310000,0,Aprobada
+S-104,2026-08-01,E-14,Cartagena,2026-08-10,2,Feria comercial,340000,780000,Rechazada
+S-105,2026-08-03,E-01,Barranquilla,2026-08-12,2,Visita a cliente,230000,640000,Aprobada
+S-106,2026-08-05,E-06,Bogotá,2026-08-13,0,Reunión con proveedor,0,380000,Aprobada
+S-107,2026-08-06,E-10,Lima,2026-08-18,3,Congreso de tecnología,300000,1450000,Por revisar
+S-108,2026-08-08,E-03,Medellín,2026-08-19,2,Visita a cliente,280000,450000,Aprobada
+S-109,2026-08-10,E-12,Bucaramanga,2026-08-20,1,Selección de personal,210000,395000,Aprobada
+S-110,2026-08-12,E-07,Cartagena,2026-08-24,3,Inspección de operación,315000,1620000,Pendiente de director
+S-111,2026-08-14,E-15,Bogotá,2026-08-25,2,Lanzamiento de campaña,320000,0,Aprobada
+S-112,2026-08-18,E-04,Barranquilla,2026-08-31,1,Visita a cliente,265000,610000,Rechazada
+S-113,2026-08-20,E-08,Medellín,2026-09-01,2,Auditoría de bodega,270000,470000,Aprobada
+S-114,2026-08-21,E-11,Bogotá,2026-09-02,1,Instalación de servidores,295000,0,Aprobada
+S-115,2026-08-24,E-02,Cartagena,2026-09-07,3,Negociación de contrato,305000,820000,Aprobada
+S-116,2026-08-26,E-13,Medellín,2026-09-08,1,Feria de empleo,250000,430000,Aprobada
+S-117,2026-08-27,E-05,Bucaramanga,2026-09-09,2,Apertura de bodega,235000,380000,Aprobada
+S-118,2026-08-31,E-14,Barranquilla,2026-09-14,2,Evento de marca,290000,690000,Aprobada
+S-119,2026-09-01,E-09,Medellín,2026-09-15,4,Implementación de sistema,300000,1580000,Pendiente de director
+S-120,2026-09-02,E-01,Bogotá,2026-09-16,1,Visita a cliente,315000,0,Aprobada
+S-121,2026-09-04,E-06,Cartagena,2026-09-21,2,Inspección de puerto,325000,760000,Rechazada
+S-122,2026-09-07,E-16,Medellín,2026-09-22,2,Producción de video,260000,440000,Aprobada
+S-123,2026-09-08,E-03,Bucaramanga,2026-09-23,1,Visita a cliente,240000,370000,Aprobada
+S-124,2026-09-10,E-10,Bogotá,2026-09-24,2,Comité de arquitectura,280000,0,Aprobada
+S-125,2026-09-11,E-07,Barranquilla,2026-09-28,3,Apertura de ruta,220000,700000,Aprobada
+S-126,2026-09-14,E-04,Cartagena,2026-09-29,2,Feria comercial,300000,1510000,Pendiente de director
+S-127,2026-09-16,E-12,Bogotá,2026-09-30,1,Comité de convivencia,275000,0,Aprobada
+S-128,2026-09-18,E-15,Ciudad de Panamá,2026-10-05,2,Congreso de mercadeo,310000,1350000,Por revisar
+S-129,2026-09-21,E-08,Bucaramanga,2026-10-06,2,Auditoría de bodega,230000,360000,Aprobada
+S-130,2026-09-22,E-02,Medellín,2026-10-07,1,Visita a cliente,320000,480000,Aprobada
+S-131,2026-09-24,E-11,Cartagena,2026-10-13,3,Soporte en sitio,290000,850000,Aprobada
+S-132,2026-09-28,E-13,Barranquilla,2026-10-14,1,Selección de personal,215000,620000,Aprobada
+S-133,2026-09-29,E-05,Bucaramanga,2026-10-15,2,Revisión de inventario,255000,375000,Aprobada
+S-134,2026-10-01,E-16,Bogotá,2026-10-19,2,Rodaje de comercial,330000,0,Rechazada
+S-135,2026-10-05,E-01,Cartagena,2026-10-20,2,Feria comercial,310000,790000,Aprobada
+S-136,2026-10-07,E-09,Barranquilla,2026-10-21,1,Visita técnica,200000,600000,Aprobada
+S-137,2026-10-09,E-06,Medellín,2026-10-26,3,Auditoría de bodega,285000,500000,Aprobada
+S-138,2026-10-12,E-14,Bogotá,2026-10-27,1,Reunión con agencia,300000,0,Aprobada
+S-139,2026-10-13,E-03,Medellín,2026-10-28,2,Visita a cliente,275000,1680000,Pendiente de director
+S-140,2026-10-14,E-07,Bucaramanga,2026-10-29,1,Inspección de operación,240000,385000,Aprobada

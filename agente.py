@@ -4,18 +4,20 @@ import re
 import subprocess
 import sys
 import unicodedata
-from datetime import date
 from pathlib import Path
 
 from dotenv import load_dotenv
 from google import genai
 
+from bd import basedatos
+from logica import solicitudes as logica
+
 MODELO = "gemini-3.5-flash-lite"
-MAX_VUELTAS = 5
+MAX_VUELTAS = 5  # vueltas de herramientas por mensaje del usuario
+PALABRAS_SALIDA = ("salir", "exit", "quit")
 BASE = Path(__file__).parent
 GASTOS = BASE / "conocimiento" / "gastos.csv"
-SOLICITUDES = BASE / "solicitudes.csv"
-ESTADO_SOLICITUD = "Pendiente de aprobación del jefe inmediato"
+RUTA_BD = basedatos.RUTA_BD
 DOCUMENTOS = "\n\n".join(
     f'<documento nombre="{archivo.name}">\n{archivo.read_text(encoding="utf-8")}\n</documento>'
     for archivo in sorted((BASE / "conocimiento").iterdir())
@@ -107,24 +109,26 @@ def sumar_gastos(area=None, estado=None):
     return {"filas": filas, "total_cop": total}
 
 
-def registrar_solicitud(empleado, ciudad, fecha_salida, noches, motivo):
-    """Agrega una solicitud de viaje a solicitudes.csv y devuelve su radicado consecutivo."""
-    existe = SOLICITUDES.exists() and SOLICITUDES.stat().st_size > 0
-    consecutivo = 1
-    if existe:
-        with open(SOLICITUDES, encoding="utf-8", newline="") as archivo:
-            consecutivo = sum(1 for _ in csv.DictReader(archivo)) + 1
-    radicado = f"S-{consecutivo:03d}"
-    with open(SOLICITUDES, "a", encoding="utf-8", newline="") as archivo:
-        escritor = csv.writer(archivo)
-        if not existe:
-            escritor.writerow(
-                ["radicado", "fecha_registro", "empleado", "ciudad", "fecha_salida", "noches", "motivo", "estado"]
-            )
-        escritor.writerow(
-            [radicado, date.today().isoformat(), empleado, ciudad, fecha_salida, noches, motivo, ESTADO_SOLICITUD]
-        )
-    return {"radicado": radicado}
+def registrar_solicitud(nombre, ciudad, fecha_salida, noches, motivo, valor_noche, valor_tiquete):
+    """Registra la solicitud con la lógica de negocio; el estado lo decide logica/, no el modelo.
+
+    Si la lógica lanza un error (por ejemplo, empleado inexistente), se propaga a ejecutar(),
+    que devuelve el mensaje al modelo sin romper el programa.
+    """
+    resultado = logica.registrar_solicitud(
+        nombre, ciudad, fecha_salida, int(noches), motivo, int(valor_noche), int(valor_tiquete),
+        ruta=RUTA_BD,
+    )
+    return {
+        "radicado": resultado["radicado"],
+        "estado": resultado["estado"],
+        "motivo_estado": resultado["motivo_estado"],
+    }
+
+
+def consultar_mis_solicitudes(nombre):
+    """Devuelve las solicitudes ya registradas del empleado, de la más antigua a la más reciente."""
+    return {"solicitudes": logica.consultar_solicitudes(nombre, ruta=RUTA_BD)}
 
 
 def cargar_skill(nombre):
@@ -168,6 +172,7 @@ def ejecutar_script(skill, script, argumento=None):
 FUNCIONES = {
     "sumar_gastos": sumar_gastos,
     "registrar_solicitud": registrar_solicitud,
+    "consultar_mis_solicitudes": consultar_mis_solicitudes,
     "cargar_skill": cargar_skill,
     "ejecutar_script": ejecutar_script,
 }
@@ -207,20 +212,45 @@ HERRAMIENTAS = [
         "type": "function",
         "name": "registrar_solicitud",
         "description": (
-            "Registra una solicitud de viaje de trabajo y devuelve su número de radicado. "
-            "Úsala solo cuando el empleado pida registrar o radicar una solicitud y ya tengas "
-            "los cinco datos; no la uses para consultas."
+            "Registra una solicitud de viaje de trabajo y devuelve su radicado, su estado y el "
+            "motivo de ese estado, que decide el sistema. Úsala solo cuando el empleado pida "
+            "registrar o radicar una solicitud y ya tengas los siete datos; no la uses para consultas."
         ),
         "parameters": {
             "type": "object",
             "properties": {
-                "empleado": {"type": "string", "description": "Nombre completo del empleado que viaja."},
+                "nombre": {"type": "string", "description": "Nombre completo del empleado que viaja."},
                 "ciudad": {"type": "string", "description": "Ciudad de destino del viaje."},
                 "fecha_salida": {"type": "string", "description": "Fecha de salida en formato AAAA-MM-DD."},
-                "noches": {"type": "integer", "description": "Número de noches del viaje."},
+                "noches": {
+                    "type": "integer",
+                    "description": "Número de noches del viaje. Un viaje de ida y vuelta el mismo día tiene 0.",
+                },
                 "motivo": {"type": "string", "description": "Motivo del viaje de trabajo."},
+                "valor_noche": {
+                    "type": "integer",
+                    "description": "Valor por noche del hotel cotizado, en pesos COP. Es 0 si no hay noches.",
+                },
+                "valor_tiquete": {"type": "integer", "description": "Valor del tiquete, en pesos COP."},
             },
-            "required": ["empleado", "ciudad", "fecha_salida", "noches", "motivo"],
+            "required": [
+                "nombre", "ciudad", "fecha_salida", "noches", "motivo", "valor_noche", "valor_tiquete",
+            ],
+        },
+    },
+    {
+        "type": "function",
+        "name": "consultar_mis_solicitudes",
+        "description": (
+            "Devuelve las solicitudes de viaje ya registradas de un empleado (radicado, fecha, ciudad, "
+            "noches, valores y estado). Úsala cuando pregunten por sus solicitudes o por el estado de una."
+        ),
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "nombre": {"type": "string", "description": "Nombre completo del empleado."},
+            },
+            "required": ["nombre"],
         },
     },
     {
@@ -263,12 +293,10 @@ HERRAMIENTAS = [
     },
 ]
 
+basedatos.crear_y_cargar(RUTA_BD)  # crea bd/altiplano.db si falta; si ya tiene datos no los duplica
+
 load_dotenv()  # carga GEMINI_API_KEY desde .env
 client = genai.Client()  # toma GEMINI_API_KEY del entorno
-
-if len(sys.argv) < 2:
-    sys.exit('Uso: python agente.py "tu pregunta"')
-
 
 def consultar(entrada, previa=None):
     """Una llamada al modelo; la instrucción y las herramientas se envían en cada vuelta."""
@@ -306,13 +334,61 @@ def ejecutar(llamada):
     return paso
 
 
-interaction = consultar(" ".join(sys.argv[1:]))
-for _ in range(MAX_VUELTAS):
-    llamadas = [paso for paso in interaction.steps if paso.type == "function_call"]
-    if not llamadas:
-        break
-    interaction = consultar([ejecutar(llamada) for llamada in llamadas], previa=interaction.id)
+def responder(mensaje, previa=None):
+    """Un mensaje del usuario: atiende las herramientas que pida el modelo y devuelve la interacción final.
 
-if any(paso.type == "function_call" for paso in interaction.steps):
-    sys.exit(f"El modelo siguió pidiendo herramientas después de {MAX_VUELTAS} vueltas.")
-print(interaction.output_text)
+    `previa` es el id de la interacción anterior; así el modelo recuerda la conversación.
+    """
+    interaction = consultar(mensaje, previa)
+    for _ in range(MAX_VUELTAS):
+        llamadas = [paso for paso in interaction.steps if paso.type == "function_call"]
+        if not llamadas:
+            break
+        interaction = consultar([ejecutar(llamada) for llamada in llamadas], previa=interaction.id)
+
+    if any(paso.type == "function_call" for paso in interaction.steps):
+        raise RuntimeError(f"El modelo siguió pidiendo herramientas después de {MAX_VUELTAS} vueltas.")
+    return interaction
+
+
+def principal():
+    """Con terminal interactiva conversa hasta que el usuario salga; sin ella responde un mensaje y termina."""
+    mensaje = " ".join(sys.argv[1:]).strip() or None
+    interactivo = sys.stdin.isatty()
+    if mensaje is None and not interactivo:
+        sys.exit('Uso: python agente.py ["tu pregunta"]')
+
+    if not interactivo:  # modo de un solo mensaje, como antes
+        try:
+            print(responder(mensaje).output_text)
+        except RuntimeError as error:
+            sys.exit(str(error))
+        return
+
+    print(f"Asistente de viáticos. Escribe tu mensaje; para terminar escribe {', '.join(PALABRAS_SALIDA)} o pulsa Ctrl+C.")
+    previa = None
+    while True:
+        if mensaje is None:
+            try:
+                escrito = input("\nTú: ").strip()
+            except (EOFError, KeyboardInterrupt):
+                print()
+                break
+            if not escrito:
+                continue
+            if escrito.casefold() in PALABRAS_SALIDA:
+                break
+            mensaje = escrito
+        try:
+            interaction = responder(mensaje, previa)
+        except Exception as error:  # un fallo en un turno no debe cerrar la conversación
+            # `previa` no cambia: el turno fallido no queda en el historial del modelo.
+            print(f"\n[error] {type(error).__name__}: {error}\nPuedes intentarlo de nuevo.")
+        else:
+            previa = interaction.id
+            print(f"\nAgente: {interaction.output_text}")
+        mensaje = None
+
+
+if __name__ == "__main__":
+    principal()
