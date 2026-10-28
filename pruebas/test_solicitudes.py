@@ -133,6 +133,70 @@ def test_consultar_empleado_inexistente_lanza_error(bd):
         consultar_solicitudes("Pedro Pérez", ruta=bd)
 
 
+def test_aviso_se_envia_con_los_datos_de_la_solicitud(bd, aviso_falso):
+    # Tiquete de 1.620.000 > 1.500.000: queda pendiente de director.
+    resultado = registrar_solicitud(
+        EMPLEADO, "bogota", "2026-11-03", 2, "Feria comercial", 250000, 1620000, ruta=bd
+    )
+    assert resultado["estado"] == PENDIENTE_DIRECTOR
+    assert resultado["avisado"] is True
+    assert len(aviso_falso.enviados) == 1
+    texto = aviso_falso.enviados[0]
+    for dato in (
+        resultado["radicado"], EMPLEADO, "Bogotá", PENDIENTE_DIRECTOR,
+        "$2.120.000", "Feria comercial", resultado["motivo_estado"],
+    ):
+        assert dato in texto
+
+
+@pytest.mark.parametrize(
+    "ciudad, noches, valor_noche, valor_tiquete, fecha, estado",
+    [
+        ("Bogotá", 2, 250000, 1620000, "2026-11-03", PENDIENTE_DIRECTOR),
+        ("Barranquilla", 4, 240000, 1100000, "2026-11-03", PENDIENTE_JEFE),
+        ("Miami", 3, 280000, 2100000, "2026-11-03", POR_REVISAR),
+    ],
+)
+def test_aviso_en_los_tres_estados_pendientes(
+    bd, aviso_falso, ciudad, noches, valor_noche, valor_tiquete, fecha, estado
+):
+    resultado = registrar_solicitud(
+        EMPLEADO, ciudad, fecha, noches, "Prueba", valor_noche, valor_tiquete, ruta=bd
+    )
+    assert resultado["estado"] == estado
+    assert resultado["avisado"] is True
+    assert len(aviso_falso.enviados) == 1
+
+
+@pytest.mark.parametrize(
+    "ciudad, noches, valor_noche, valor_tiquete, estado",
+    [
+        ("Medellín", 2, 320000, 1360000, APROBADA),
+        ("Bucaramanga", 3, 262000, 390000, RECHAZADA),
+    ],
+)
+def test_sin_aviso_si_el_estado_no_lo_requiere(
+    bd, aviso_falso, ciudad, noches, valor_noche, valor_tiquete, estado
+):
+    resultado = registrar_solicitud(
+        EMPLEADO, ciudad, "2026-11-03", noches, "Prueba", valor_noche, valor_tiquete, ruta=bd
+    )
+    assert resultado["estado"] == estado
+    assert resultado["avisado"] is None
+    assert aviso_falso.enviados == []
+
+
+def test_si_el_aviso_falla_la_solicitud_queda_guardada(bd, aviso_falso):
+    aviso_falso.resultado = False
+    resultado = registrar_solicitud(
+        EMPLEADO, "Bogotá", "2026-11-03", 2, "Prueba", 250000, 1620000, ruta=bd
+    )
+    assert resultado["avisado"] is False
+    guardada = consultar_solicitudes(EMPLEADO, ruta=bd)[-1]
+    assert guardada["radicado"] == resultado["radicado"]
+    assert guardada["estado"] == PENDIENTE_DIRECTOR
+
+
 # Regla nueva: desde 2026-11-01, costo estimado > 2.000.000 requiere al jefe inmediato.
 # (nombre, tope, noches, valor_noche, valor_tiquete, fecha_salida, estado esperado)
 CASOS_JEFE = [

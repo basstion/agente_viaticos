@@ -59,6 +59,9 @@ class SolicitudRegistrada(BaseModel):
     radicado: str
     estado: str
     motivo_estado: str = Field(description="Por qué la lógica asignó ese estado.")
+    avisado: bool | None = Field(
+        description="True si se envió el aviso por Telegram, False si falló, null si el estado no requiere aviso."
+    )
 
 
 class SolicitudGuardada(BaseModel):

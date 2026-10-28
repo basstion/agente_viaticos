@@ -7,6 +7,7 @@ delega en bd/basedatos.py.
 from datetime import date
 
 from bd import basedatos
+from externos import notificaciones
 
 # Política de viáticos, sección 3: un tiquete que cuesta más requiere al director.
 LIMITE_TIQUETE = 1_500_000
@@ -22,6 +23,9 @@ PENDIENTE_DIRECTOR = "Pendiente de director"
 PENDIENTE_JEFE = "Pendiente de jefe inmediato"
 POR_REVISAR = "Por revisar"
 
+# Estados que alguien debe atender: al guardarlos se envía un aviso.
+ESTADOS_CON_AVISO = (PENDIENTE_DIRECTOR, PENDIENTE_JEFE, POR_REVISAR)
+
 
 class EmpleadoNoEncontrado(ValueError):
     """El nombre no corresponde a ningún empleado de la base."""
@@ -29,6 +33,17 @@ class EmpleadoNoEncontrado(ValueError):
 
 def _pesos(valor):
     return "$" + f"{valor:,}".replace(",", ".")
+
+
+def _texto_aviso(radicado, empleado, destino, estado, costo, motivo, motivo_estado):
+    return (
+        f"Solicitud {radicado} — {estado}\n"
+        f"Empleado: {empleado}\n"
+        f"Destino: {destino}\n"
+        f"Costo estimado: {_pesos(costo)}\n"
+        f"Motivo del viaje: {motivo}\n"
+        f"Por qué: {motivo_estado}"
+    )
 
 
 def costo_estimado(noches, valor_noche, valor_tiquete):
@@ -106,10 +121,11 @@ def registrar_solicitud(
 
     # guardar_solicitud toma el siguiente radicado y lo inserta en una sola
     # transacción, así que dos registros simultáneos no repiten número.
+    destino = datos_ciudad["ciudad"] if datos_ciudad else ciudad.strip()
     radicado = basedatos.guardar_solicitud(
         {
             "id_empleado": datos_empleado["id_empleado"],
-            "ciudad": datos_ciudad["ciudad"] if datos_ciudad else ciudad.strip(),
+            "ciudad": destino,
             "fecha_salida": fecha_salida,
             "noches": noches,
             "motivo": motivo,
@@ -119,11 +135,23 @@ def registrar_solicitud(
         },
         ruta,
     )
+    costo = costo_estimado(noches, valor_noche, valor_tiquete)
+
+    # El aviso va después de guardar: si falla, la solicitud queda registrada igual.
+    # `avisado` es None cuando el estado no requiere aviso.
+    avisado = None
+    if estado in ESTADOS_CON_AVISO:
+        avisado = notificaciones.enviar_aviso(
+            _texto_aviso(
+                radicado, datos_empleado["nombre"], destino, estado, costo, motivo, motivo_estado
+            )
+        )
     return {
         "radicado": radicado,
         "estado": estado,
         "motivo_estado": motivo_estado,
-        "costo_estimado": costo_estimado(noches, valor_noche, valor_tiquete),
+        "costo_estimado": costo,
+        "avisado": avisado,
     }
 
 

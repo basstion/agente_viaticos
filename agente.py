@@ -123,6 +123,7 @@ def registrar_solicitud(nombre, ciudad, fecha_salida, noches, motivo, valor_noch
         "radicado": resultado["radicado"],
         "estado": resultado["estado"],
         "motivo_estado": resultado["motivo_estado"],
+        "avisado": resultado["avisado"],
     }
 
 
