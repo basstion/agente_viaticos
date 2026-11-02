@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Altiplano · Reembolsos de noviembre</title>
+  <style>
+    :root { --azul: #12263f; --claro: #eef2f7; --verde: #1d7a46; --rojo: #b3261e; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; background: var(--claro); color: #1b1b1b; }
+    header { background: var(--azul); color: white; padding: 18px 24px; }
+    header h1 { margin: 0; font-size: 22px; }
+    header p { margin: 4px 0 0; opacity: .8; font-size: 14px; }
+    main { max-width: 900px; margin: 24px auto; padding: 0 16px; }
+    .panel { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+    label { font-weight: bold; display: block; margin-bottom: 6px; }
+    input { padding: 10px; font-size: 15px; width: 260px; border: 1px solid #c4ccd6; border-radius: 6px; }
+    button { padding: 10px 18px; font-size: 15px; background: var(--azul); color: white; border: 0; border-radius: 6px; cursor: pointer; }
+    #estado { margin-top: 14px; font-weight: bold; }
+    table { width: 100%; border-collapse: collapse; margin-top: 18px; font-size: 14px; }
+    th, td { padding: 8px; border-bottom: 1px solid #e3e7ec; text-align: left; }
+    td.num, th.num { text-align: right; }
+    tfoot td { font-weight: bold; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Altiplano S.A.S.</h1>
+    <p>Reembolsos de viáticos · noviembre de 2026</p>
+  </header>
+  <main>
+    <div class="panel">
+      <label for="clave">Clave de administrador</label>
+      <input id="clave" type="password" placeholder="Escribe la clave">
+      <button id="ver">Ver reporte</button>
+      <div id="estado"></div>
+      <table id="tabla" hidden>
+        <thead>
+          <tr>
+            <th>Empleado</th><th>Ciudad</th><th>Salida</th><th>Regreso</th>
+            <th class="num">Días</th><th class="num">Alimentación</th>
+            <th class="num">Transporte</th><th class="num">Total</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+        <tfoot><tr><td colspan="7">Total a reembolsar</td><td class="num" id="gran-total"></td></tr></tfoot>
+      </table>
+    </div>
+  </main>
+
+  <script>
+    const estado = document.getElementById("estado");
+    const tabla = document.getElementById("tabla");
+    const pesos = (n) => "$" + n.toLocaleString("es-CO");
+
+    async function verReporte() {
+      tabla.hidden = true;
+      estado.style.color = "inherit";
+      estado.textContent = "Cargando…";
+
+      const respuesta = await fetch("/api/reembolsos", {
+        headers: { "X-Clave": document.getElementById("clave").value }
+      });
+
+      if (respuesta.status === 401) {
+        estado.style.color = "var(--rojo)";
+        estado.textContent = "Clave incorrecta";
+        return;
+      }
+      if (respuesta.status === 500) {
+        estado.style.color = "var(--rojo)";
+        estado.textContent = "Error del servidor. Revisa la terminal donde corre el servidor.";
+        return;
+      }
+
+      const viajes = await respuesta.json();
+      const cuerpo = tabla.querySelector("tbody");
+      cuerpo.innerHTML = "";
+      let granTotal = 0;
+      viajes.forEach((v) => {
+        granTotal += v.total;
+        cuerpo.insertAdjacentHTML("beforeend", `
+          <tr>
+            <td>${v.empleado}</td><td>${v.ciudad}</td><td>${v.salida}</td><td>${v.regreso}</td>
+            <td class="num">${v.dias}</td><td class="num">${pesos(v.alimentacion)}</td>
+            <td class="num">${pesos(v.transporte)}</td><td class="num">${pesos(v.total)}</td>
+          </tr>`);
+      });
+      document.getElementById("gran-total").textContent = pesos(granTotal);
+      estado.style.color = "var(--verde)";
+      estado.textContent = `${viajes.length} viajes`;
+      tabla.hidden = false;
+    }
+
+    document.getElementById("ver").addEventListener("click", verReporte);
+  </script>
+</body>
+</html>

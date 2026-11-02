@@ -1,0 +1,19 @@
+2026-11-20 08:01:12 INFO  servidor iniciado en 127.0.0.1:8000
+2026-11-20 08:14:37 INFO  POST /chat 200 (2.8 s)
+2026-11-20 08:14:59 INFO  POST /chat 200 (3.1 s)
+2026-11-20 08:15:02 ERROR POST /chat 500
+Traceback (most recent call last):
+  File "agente.py", line 88, in responder
+    respuesta = cliente.interactions.create(model=MODELO, input=mensaje)
+google.genai.errors.ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details.', 'status': 'RESOURCE_EXHAUSTED'}}
+2026-11-20 08:31:45 INFO  POST /solicitudes 201 (0.2 s)
+2026-11-20 08:31:46 WARN  externos/notificaciones.py: aviso no enviado (401 Unauthorized)
+2026-11-20 09:02:10 INFO  GET /solicitudes?empleado=Laura%20M%C3%A9ndez 200 (0.1 s)
+2026-11-20 09:05:33 ERROR GET /estadisticas?empleado=Jorge%20Salcedo 500
+Traceback (most recent call last):
+  File "api.py", line 54, in estadisticas
+    return logica.solicitudes.resumen(empleado)
+  File "logica/solicitudes.py", line 97, in resumen
+    promedio = total / len(solicitudes)
+ZeroDivisionError: division by zero
+2026-11-20 09:40:18 INFO  POST /chat 200 (2.5 s)

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b2a5b">
+  <title>Altiplano · Asistente de viáticos</title>
+  <style>
+    :root {
+      --azul: #0b2a5b;
+      --azul-claro: #e8eef8;
+      --texto: #1b2433;
+      --borde: #d5deee;
+      --blanco: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      color: var(--texto);
+      background: var(--blanco);
+      display: flex;
+      justify-content: center;
+    }
+    .app {
+      width: 100%;
+      max-width: 760px;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      background: var(--blanco);
+    }
+    header {
+      background: var(--azul);
+      color: var(--blanco);
+      padding: 14px 16px;
+      padding-top: max(14px, env(safe-area-inset-top));
+    }
+    .logo { font-size: 1.4rem; font-weight: 700; letter-spacing: .04em; }
+    header p { margin: 2px 0 0; font-size: .85rem; opacity: .85; }
+
+    #mensajes {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      background: #f6f8fc;
+    }
+    .burbuja {
+      max-width: 82%;
+      padding: 10px 14px;
+      border-radius: 16px;
+      line-height: 1.45;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+    .usuario {
+      align-self: flex-end;
+      background: var(--azul);
+      color: var(--blanco);
+      border-bottom-right-radius: 4px;
+    }
+    .asistente {
+      align-self: flex-start;
+      background: var(--blanco);
+      border: 1px solid var(--borde);
+      border-bottom-left-radius: 4px;
+    }
+    .pensando { color: #5b6b8a; font-style: italic; }
+
+    form {
+      display: flex;
+      gap: 8px;
+      padding: 10px 12px;
+      padding-bottom: max(10px, env(safe-area-inset-bottom));
+      border-top: 1px solid var(--borde);
+      background: var(--blanco);
+    }
+    textarea {
+      flex: 1;
+      resize: none;
+      border: 1px solid var(--borde);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font: inherit;
+      font-size: 16px; /* evita el zoom automático en iPhone */
+      max-height: 120px;
+    }
+    textarea:focus { outline: 2px solid var(--azul); outline-offset: 0; }
+    button {
+      border: 0;
+      border-radius: 12px;
+      background: var(--azul);
+      color: var(--blanco);
+      font: inherit;
+      font-weight: 600;
+      padding: 0 18px;
+      cursor: pointer;
+    }
+    button:disabled { opacity: .5; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="logo">Altiplano</div>
+      <p>Asistente de viáticos</p>
+    </header>
+
+    <main id="mensajes" aria-live="polite"></main>
+
+    <form id="formulario">
+      <textarea id="texto" rows="1" placeholder="Escribe tu pregunta…" aria-label="Mensaje" autofocus></textarea>
+      <button id="enviar" type="submit">Enviar</button>
+    </form>
+  </div>
+
+  <script>
+    const mensajes = document.getElementById("mensajes");
+    const formulario = document.getElementById("formulario");
+    const texto = document.getElementById("texto");
+    const enviar = document.getElementById("enviar");
+
+    const MENSAJE_FALLO =
+      "En este momento no puedo responderte. Por favor intenta de nuevo en unos minutos.";
+    const MENSAJE_CONVERSACION_PERDIDA =
+      "Perdí el hilo de nuestra conversación. Empecemos de nuevo: ¿puedes repetir tu mensaje?";
+    const TIEMPO_MAXIMO_MS = 60000;
+
+    let conversacionId = null;
+
+    function agregar(clase, contenido) {
+      const burbuja = document.createElement("div");
+      burbuja.className = "burbuja " + clase;
+      burbuja.textContent = contenido; // textContent: nunca interpreta HTML
+      mensajes.appendChild(burbuja);
+      mensajes.scrollTop = mensajes.scrollHeight;
+      return burbuja;
+    }
+
+    function ajustarAltura() {
+      texto.style.height = "auto";
+      texto.style.height = Math.min(texto.scrollHeight, 120) + "px";
+    }
+
+    async function pedirRespuesta(mensaje) {
+      const control = new AbortController();
+      const temporizador = setTimeout(() => control.abort(), TIEMPO_MAXIMO_MS);
+      try {
+        const respuesta = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ mensaje, conversacion_id: conversacionId }),
+          signal: control.signal,
+        });
+        if (respuesta.status === 404) {
+          conversacionId = null; // el servidor ya no conoce esa conversación
+          return MENSAJE_CONVERSACION_PERDIDA;
+        }
+        if (!respuesta.ok) return MENSAJE_FALLO;
+        const datos = await respuesta.json();
+        conversacionId = datos.conversacion_id;
+        return datos.respuesta;
+      } catch {
+        return MENSAJE_FALLO;
+      } finally {
+        clearTimeout(temporizador);
+      }
+    }
+
+    async function manejarEnvio() {
+      const mensaje = texto.value.trim();
+      if (!mensaje || enviar.disabled) return;
+
+      agregar("usuario", mensaje);
+      texto.value = "";
+      ajustarAltura();
+      enviar.disabled = true;
+      const espera = agregar("asistente pensando", "Pensando…");
+
+      const respuesta = await pedirRespuesta(mensaje);
+
+      espera.classList.remove("pensando");
+      espera.textContent = respuesta;
+      mensajes.scrollTop = mensajes.scrollHeight;
+      enviar.disabled = false;
+      texto.focus();
+    }
+
+    formulario.addEventListener("submit", (evento) => {
+      evento.preventDefault();
+      manejarEnvio();
+    });
+
+    texto.addEventListener("keydown", (evento) => {
+      if (evento.key === "Enter" && !evento.shiftKey && !evento.isComposing) {
+        evento.preventDefault();
+        manejarEnvio();
+      }
+    });
+    texto.addEventListener("input", ajustarAltura);
+
+    agregar("asistente", "Hola, soy el asistente de viáticos de Altiplano. ¿En qué te puedo ayudar?");
+  </script>
+</body>
+</html>
