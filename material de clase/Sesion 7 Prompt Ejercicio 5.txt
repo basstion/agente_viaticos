@@ -1,0 +1,11 @@
+Crea api.py con FastAPI, otra entrada a la misma aplicación:
+1. GET /solicitudes?empleado=Nombre devuelve las solicitudes de ese empleado.
+2. POST /solicitudes recibe los siete datos de una solicitud, la registra y
+   devuelve el radicado, el estado y el motivo.
+3. Las rutas solo llaman a funciones de logica/: nada de SQL ni reglas en api.py.
+4. Si el empleado no existe, responde con error 404 y el mensaje.
+5. Pon un ejemplo en el modelo de datos para que /docs muestre una solicitud
+   lista para probar: Natalia Guzmán, Medellín, 2026-11-17, 1 noche, auditoría
+   de bodega, hotel 280000, tiquete 450000.
+Instala fastapi y uvicorn en mi entorno virtual, arranca el servidor y dime la
+dirección de /docs.

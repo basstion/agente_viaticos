@@ -1,0 +1,10 @@
+Convierte la skill revisar-gastos en un paquete completo:
+1. Copia conocimiento/politica_viaticos.md a referencia/ dentro de la skill.
+2. Pasa el formato del informe a plantilla_informe.md dentro de la skill.
+3. Crea scripts/validar.py: recibe la ruta del CSV, decide el veredicto de
+   cada gasto según la política, calcula el total y muestra el informe
+   llenando la plantilla. Solo biblioteca estándar y archivos en UTF-8.
+4. Reescribe SKILL.md para que sea corto: cuándo usarla, ejecutar el script,
+   mostrar el informe sin cambiar cifras y agregar "Notas del revisor" con
+   lo que el script no puede juzgar.
+Prueba el script con datos/legalizacion_L-2031.csv y muéstrame el total.

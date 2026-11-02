@@ -1,0 +1,13 @@
+Crea la capa de datos en bd/basedatos.py:
+1. Una base SQLite en bd/altiplano.db con tres tablas: empleados, ciudades y
+   solicitudes, con las columnas de los CSV de kit7/. Los valores en pesos y las
+   noches son números enteros, no texto. Cada tabla con su llave primaria, y
+   solicitudes.id_empleado apunta a empleados.
+2. Una función que cree las tablas y cargue los tres CSV (solicitudes_historicas.csv
+   va a la tabla solicitudes). Si la base ya tiene datos, no los duplica.
+3. Funciones para buscar un empleado por nombre, buscar una ciudad, calcular el
+   siguiente radicado, guardar una solicitud y listar las solicitudes de un empleado.
+   Al comparar nombres, ignora mayúsculas y tildes.
+Esta capa no decide nada: guarda los topes de ciudades.csv como datos, pero no aplica
+reglas. Lee los CSV en UTF-8.
+Al terminar, crea la base y dime cuántas filas quedaron en cada tabla.

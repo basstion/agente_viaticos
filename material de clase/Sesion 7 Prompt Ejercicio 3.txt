@@ -1,0 +1,20 @@
+Implementa las reglas de kit7/reglas_solicitudes.md en logica/solicitudes.py:
+1. validar_solicitud(tope_hospedaje, noches, valor_noche, valor_tiquete) devuelve
+   el estado y el motivo. Si la ciudad no tiene tope, tope_hospedaje llega como None.
+   No usa sqlite3 ni lee archivos.
+2. registrar_solicitud(...) busca el empleado y la ciudad con las funciones de bd/,
+   valida, asigna el siguiente radicado y guarda. Si el empleado no existe, lanza
+   un error con un mensaje claro.
+3. consultar_solicitudes(nombre) devuelve las solicitudes de un empleado.
+4. El límite de $1.500.000 del tiquete va como constante con nombre al inicio
+   del archivo.
+5. Pruebas con pytest en pruebas/test_solicitudes.py con estos seis casos:
+   C1 Medellín, 2 noches, hotel 320000, tiquete 1360000
+   C2 Bucaramanga, 3 noches, hotel 262000, tiquete 390000
+   C3 Cartagena, 1 noche, hotel 300000, tiquete 1500000
+   C4 Bogotá, 2 noches, hotel 250000, tiquete 1620000
+   C5 Miami, 3 noches, hotel 280000, tiquete 2100000
+   C6 Barranquilla, 4 noches, hotel 240000, tiquete 1100000
+   El estado esperado de cada caso sale de las reglas; escríbelo tú y explícame
+   por qué. Instala pytest en mi entorno virtual, corre las pruebas y muéstrame
+   el resultado.

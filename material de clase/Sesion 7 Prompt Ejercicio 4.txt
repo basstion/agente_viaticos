@@ -1,0 +1,15 @@
+Conecta agente.py a la nueva aplicación, sin dañar lo que ya funciona:
+1. Abre la base con las funciones de bd/ al iniciar.
+2. La herramienta registrar_solicitud ya no escribe en solicitudes.csv: llama a
+   registrar_solicitud de logica/ y devuelve el radicado, el estado y el motivo.
+   Ahora pide siete datos: nombre, ciudad, fecha de salida, noches, motivo, valor
+   por noche del hotel y valor del tiquete.
+3. Agrega la herramienta consultar_mis_solicitudes(nombre), que llama a
+   consultar_solicitudes de logica/.
+4. Ninguna herramienta recibe el estado como parámetro: lo decide la lógica.
+5. Si la lógica responde con un error, la herramienta devuelve el mensaje al
+   modelo en lugar de romper el programa.
+6. En sistema.md: el agente informa el estado y el motivo tal como los devuelve
+   la herramienta, pide los datos que falten y nunca promete aprobaciones.
+Declara las herramientas igual que las que ya tiene (Interactions API) y conserva
+la traza que imprime al usarlas. Explícame qué cambiaste.

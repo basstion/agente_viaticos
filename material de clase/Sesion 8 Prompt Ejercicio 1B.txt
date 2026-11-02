@@ -1,0 +1,4 @@
+Instala python-dotenv y requests en mi entorno virtual. Crea obtener_chat_id.py:
+lee TELEGRAM_TOKEN del .env sin imprimirlo, llama a getUpdates de la API de
+Telegram y muestra el nombre y el chat_id de quien le escribió al bot. Si la
+lista viene vacía, que lo diga. Ejecútalo.

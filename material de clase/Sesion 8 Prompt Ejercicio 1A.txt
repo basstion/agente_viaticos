@@ -1,0 +1,10 @@
+Prepara mi proyecto para guardar secretos, sin leer ni mostrar ningún valor:
+1. Si no existe un archivo .env en la raíz, créalo con estas dos líneas:
+   TELEGRAM_TOKEN=pega-aqui
+   TELEGRAM_CHAT_ID=pega-aqui
+   Si ya existe, agrega esas dos líneas al final sin leerlo.
+2. Asegúrate de que .env esté en .gitignore y verifícalo con git check-ignore.
+3. Crea .env.example con los mismos nombres y valores de ejemplo, incluida la
+   variable de la llave de Gemini si mi proyecto usa una.
+4. En .claude/settings.json agrega una regla deny para Read(./.env) y
+   Read(./.env.*), sin borrar lo que ya tenga ese archivo.

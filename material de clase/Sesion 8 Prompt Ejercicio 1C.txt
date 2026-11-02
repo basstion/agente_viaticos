@@ -1,0 +1,13 @@
+Crea externos/notificaciones.py con enviar_aviso(texto): lee TELEGRAM_TOKEN y
+TELEGRAM_CHAT_ID del .env y envía el texto con sendMessage de la API de Telegram.
+- Nunca imprime el token ni la URL completa: el token va dentro de la URL.
+- Nunca lanza errores: si falla, imprime una línea corta y devuelve False.
+- Tiempo máximo de espera de 10 segundos.
+Luego, en logica/solicitudes.py, después de guardar una solicitud con estado
+Pendiente de director, Pendiente de jefe o Por revisar, envía un aviso con el
+radicado, el empleado, el destino, el estado, el costo estimado y el motivo.
+Si el aviso falla, la solicitud queda guardada igual y el resultado dice si se
+avisó. La lógica no usa requests ni lee el .env: llama a externos/.
+El aviso no es una herramienta del agente. Agrega pruebas que reemplacen el
+aviso por uno falso, para que nunca manden mensajes reales. Envía un mensaje
+de prueba a mi Telegram y corre todas las pruebas.

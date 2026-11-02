@@ -1,0 +1,13 @@
+Prepara mi proyecto para desplegarlo en FastAPI Cloud. No lo despliegues.
+1. En pyproject.toml: la app es api:app ([tool.fastapi] entrypoint), con
+   todas las dependencias, incluido "fastapi[standard]", y requires-python
+   igual a mi versión. Instálalas en mi entorno virtual.
+2. Crea .fastapicloudignore para que no suba la carpeta clinica9/.
+3. Confirma que .env y bd/altiplano.db están en .gitignore.
+4. Si bd/altiplano.db no existe, crea las tablas y los datos iniciales
+   al arrancar.
+5. Lee sistema.md, static/ y los datos con rutas relativas al archivo
+   (Path(__file__).parent).
+6. Arranca el servidor para probarlo, detenlo y guarda todo en Git.
+Al final, dime el comando exacto para ejecutar "fastapi deploy" en mi
+terminal con mi entorno virtual.

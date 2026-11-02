@@ -1,0 +1,6 @@
+Qué hice: desplegué mi app en FastAPI Cloud con fastapi deploy.
+Qué esperaba: que el chat respondiera igual que en mi computador.
+Qué pasó: [el despliegue falló / el chat muestra un mensaje de error].
+Evidencia: revisa los logs de la app con
+"fastapi cloud logs --no-follow --since 30m", usando mi entorno virtual.
+Explícame la causa en una frase y dime qué se debió configurar.

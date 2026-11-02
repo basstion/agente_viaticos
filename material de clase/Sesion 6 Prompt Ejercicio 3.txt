@@ -1,0 +1,13 @@
+Quiero que mi agente de Gemini (agente.py) use las skills de .claude/skills/.
+Sin dañar lo que ya funciona, agrega:
+1. Al iniciar, lee name y description de cada .claude/skills/*/SKILL.md y
+   añade esa lista al final de las instrucciones de sistema. Indica que debe
+   cargar la skill antes de usarla y que, cuando use una skill, el formato de
+   la skill reemplaza al de <formato>.
+2. Una herramienta cargar_skill(nombre) que devuelve el contenido de SKILL.md.
+3. Una herramienta ejecutar_script(skill, script, argumento) que ejecuta con
+   Python un script de la carpeta scripts/ de esa skill y devuelve lo que
+   imprime. Debe negarse a ejecutar cualquier cosa fuera de esa carpeta.
+4. Que imprima "[skill] cargando ..." y "[script] ejecutando ..." al usarlas.
+Usa la Interactions API con un bucle que atienda las herramientas hasta que
+el modelo responda con texto (máximo 5 vueltas). Explícame qué cambiaste.

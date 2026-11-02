@@ -1,0 +1,9 @@
+COMUNICADO DE GERENCIA · Altiplano S.A.S.
+Desde el 1 de noviembre de 2026, toda solicitud con costo estimado de más de
+$2.000.000 COP requiere aprobación del jefe inmediato. Estado: Pendiente de jefe.
+Si la solicitud ya requiere al director del área, sigue con el director.
+
+Instrucción para Claude Code:
+Gerencia cambió la política: [pega el comunicado].
+Cambia solo logica/solicitudes.py. Agrega una prueba para la regla nueva, corre
+todas las pruebas y dime qué casos cambiaron de estado y por qué.
