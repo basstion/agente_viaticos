@@ -6,14 +6,23 @@ Arranque:  python -m uvicorn api:app
 
 from contextlib import asynccontextmanager
 from datetime import date
+from pathlib import Path
 
+import httpx
 from fastapi import FastAPI, HTTPException, Query
+from fastapi.responses import FileResponse
+from google.genai import errors as errores_gemini
+from google.genai._gaos.lib import compat_errors  # excepciones de client.interactions (Interactions API)
 from pydantic import BaseModel, ConfigDict, Field
 
+import agente
 from bd import basedatos
 from logica import solicitudes as logica
 
 RUTA_BD = basedatos.RUTA_BD
+PAGINA_CHAT = Path(__file__).parent / "static" / "index.html"
+# El SDK lanza una familia de excepciones u otra según la API; las dos traen el código HTTP.
+ERRORES_GEMINI = (compat_errors.APIError, errores_gemini.APIError)
 
 
 @asynccontextmanager
@@ -101,3 +110,52 @@ def crear_solicitud(solicitud: SolicitudNueva):
     except logica.EmpleadoNoEncontrado as error:
         raise HTTPException(status_code=404, detail=str(error)) from error
     return resultado
+
+
+class MensajeChat(BaseModel):
+    model_config = ConfigDict(
+        json_schema_extra={"examples": [{"mensaje": "Hola, ¿qué puedes hacer?", "conversacion_id": None}]}
+    )
+
+    mensaje: str = Field(min_length=1, description="Mensaje del usuario para el agente.")
+    conversacion_id: str | None = Field(
+        default=None,
+        description="Id devuelto en la respuesta anterior para continuar la conversación; null para empezar una nueva.",
+    )
+
+
+class RespuestaChat(BaseModel):
+    respuesta: str = Field(description="Respuesta del agente.")
+    conversacion_id: str = Field(description="Envíalo en el siguiente mensaje para que el agente recuerde lo hablado.")
+
+
+@app.post("/chat", response_model=RespuestaChat, summary="Conversar con el agente de viáticos")
+def chat(entrada: MensajeChat):
+    # `def` (no `async def`): la llamada a Gemini es bloqueante y FastAPI la corre en un hilo aparte.
+    try:
+        interaccion = agente.responder(entrada.mensaje, entrada.conversacion_id)
+    except ERRORES_GEMINI as error:
+        # Un id que Gemini no reconoce llega como 400/404; el resto (429, 5xx, timeouts...) es un fallo del servicio.
+        codigo = getattr(error, "status_code", None) or getattr(error, "code", None)
+        if entrada.conversacion_id and codigo in (400, 404):
+            raise HTTPException(status_code=404, detail="No encontré esa conversación. Empieza una nueva.") from error
+        raise HTTPException(
+            status_code=503,
+            detail="El asistente no está disponible en este momento. Intenta de nuevo en unos minutos.",
+        ) from error
+    except httpx.HTTPError as error:
+        raise HTTPException(
+            status_code=503,
+            detail="No pude comunicarme con el asistente. Intenta de nuevo en unos minutos.",
+        ) from error
+    except RuntimeError as error:  # el modelo no terminó de usar herramientas (MAX_VUELTAS)
+        raise HTTPException(
+            status_code=503,
+            detail="El asistente no pudo completar la respuesta. Intenta reformular tu mensaje.",
+        ) from error
+    return {"respuesta": interaccion.output_text, "conversacion_id": interaccion.id}
+
+
+@app.get("/", include_in_schema=False)
+def pagina_chat():
+    return FileResponse(PAGINA_CHAT)
